@@ -20,7 +20,6 @@ const UserSchema = new mongoose.Schema({
   phone: {
     type: String,
     require: false,
-    unique: true,
     match: [/\d{9}/, 'Please fill a valid phone number']
   },
   favGenres: {
