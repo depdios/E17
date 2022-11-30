@@ -4,8 +4,6 @@ const mongoose = require("mongoose");
 const { User } = require("./models/userModel");
 const { Ebook } = require("./models/ebookModel");
 
-
-
 const app = express();
 
 app.use(express.json());
