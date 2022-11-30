@@ -16,7 +16,7 @@ export const Register = (props) => {
         
         <div className="auth-form-container">
 
-            <form onSubmit={handleSubmit}>
+            <form className="register-form"onSubmit={handleSubmit}>
                 <label htmlFor="name">Name</label>
                 <input value={name} type="name" placeholder="Nombre" id="name" name="name"/>
 
@@ -28,7 +28,7 @@ export const Register = (props) => {
 
                 <button type="submit">Sign up</button>
             </form>
-            <button onClick={() => props.onFormSwitch('login')}>¿Ya tiene una cuenta? Inicie sesión aquí</button>
+            <button className="link-btn" onClick={() => props.onFormSwitch('login')}>¿Ya tiene una cuenta? Inicie sesión aquí</button>
 
         </div>
 
