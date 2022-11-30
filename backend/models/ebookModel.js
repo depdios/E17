@@ -11,7 +11,7 @@ const EbookSchema = new mongoose.Schema({
   },
   price: {
     type: Number,
-    required: true,
+    required: false,
   },
   rating: {
     type: String,
