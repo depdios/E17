@@ -8,9 +8,23 @@ const app = express();
 
 app.use(express.json());
 
+app.get("/", async (req, res) => {
+  res.send('Acceso general')
+});
+
 app.get("/users", async (req, res) => {
   const allUsers = await User.find();
   return res.status(200).json(allUsers);
+});
+
+app.get("/login/", async (req, res) => {
+  const logUser = await User.findOne({ email: req.body.email });
+  if (!logUser)
+    return res.status(400).send('No existe el usuario')
+  else if (logUser.password == req.body.password)
+    return res.status(200).send('Acceso permitido');
+  else
+    return res.status(400).send('Contraseña incorrecta')
 });
 
 app.get("/users/:id", async (req, res) => {
