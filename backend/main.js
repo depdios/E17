@@ -3,8 +3,14 @@ const mongoose = require("mongoose");
 
 const { User } = require("./models/userModel");
 const { Ebook } = require("./models/ebookModel");
+const cors = require('cors');
+const config = require('./config');
 
 const app = express();
+
+app.use(cors(
+  config
+));
 
 app.use(express.json());
 
@@ -17,14 +23,14 @@ app.get("/users", async (req, res) => {
   return res.status(200).json(allUsers);
 });
 
-app.get("/login/", async (req, res) => {
+app.post("/login/", async (req, res) => {
   const logUser = await User.findOne({ email: req.body.email });
   if (!logUser)
-    return res.status(400).send('No existe el usuario')
+    return res.status(400).send({"message": 'No existe el usuario'});
   else if (logUser.password == req.body.password)
-    return res.status(200).send('Acceso permitido');
+    return res.status(200).send({"message": 'Acceso permitido'});
   else
-    return res.status(400).send('Contraseña incorrecta')
+    return res.status(400).send({"message": 'Contraseña incorrecta'})
 });
 
 app.get("/users/:id", async (req, res) => {
