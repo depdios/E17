@@ -43,10 +43,10 @@ export const Register = (props) => {
                 <label htmlFor="email">Email</label>
                 <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" placeholder="youremail@gmail.com" id="email" name="email"/>
 
-                <label htmlfor="password">Password</label>
+                <label htmlFor="password">Password</label>
                 <input value={pass} onChange={(e) => setPass(e.target.value)} type="password" placeholder="********" id="password" name="password"/>
 
-                <label htmlfor="password">Retype password</label>
+                <label htmlFor="password">Retype password</label>
                 <input value={pass} onChange={(e) => setPass(e.target.value)} type="password" placeholder="********" id="password" name="password"/>
 
                 <button type="submit">Sign up</button>
