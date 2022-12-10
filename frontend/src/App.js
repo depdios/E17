@@ -1,12 +1,16 @@
 import React, { useState } from "react";
-//import logo from './logo.svg';
 import './App.css';
 import { Login } from "./components/Login";
 import { Register } from "./components/Register";
+import { Logeado } from "./components/Logeado"
 
 function App() {
 
   const [currentForm, setCurrentForm] = useState('login');
+
+  const toggleForm = (formName) => {
+    setCurrentForm(formName);
+  }
 
   return (
     <div>
@@ -29,8 +33,9 @@ function App() {
     <div className="App">
       {
         {
-          'login': <Login />,
-          'signup': <Register />
+          'login': <Login onFormSwitch={toggleForm} />,
+          'signup': <Register onFormSwitch={toggleForm} />,
+          'logeado': <Logeado onFormSwitch={toggleForm} />
         }[currentForm]
       }
     </div>

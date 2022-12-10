@@ -18,7 +18,10 @@ export const Login = (props) => {
             },
             body: JSON.stringify(user)
         })
-        .then(res => res.json())
+        .then(res => { 
+            res.json()
+            props.onFormSwitch('logeado')
+          })
         .then(res=> {
               console.log(res.message);
         });
@@ -37,8 +40,7 @@ export const Login = (props) => {
 
                 <button type="submit">Log in</button>
             </form>
-            <button className="link-btn" onClick={() => props.onFormSwitch('register')}>¿Todavía no tiene una cuenta? Regístrese aquí</button>
-
+            <button className="link-btn" onClick={() => props.onFormSwitch('signup')}>¿Todavía no tiene una cuenta? Regístrese aquí</button>
         </div>
     )
 }
