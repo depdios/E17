@@ -4,13 +4,12 @@ const mongoose = require("mongoose");
 const { User } = require("./models/userModel");
 const { Ebook } = require("./models/ebookModel");
 const cors = require('cors');
-const config = require('./config');
 
 const app = express();
 
-app.use(cors(
-  config
-));
+app.use(cors({
+  origin: 'http://localhost:3001'
+}));
 
 app.use(express.json());
 
