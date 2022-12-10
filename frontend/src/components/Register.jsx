@@ -9,7 +9,23 @@ export const Register = (props) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(email);
+        const user = {
+            username: name,
+            phone: phone,
+            email: email,
+            password: pass
+          };
+        fetch('http://localhost:3000/users', {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(user)
+        })
+        .then(res => res.json())
+        .then(res=> {
+              console.log(res.message);
+        });
         
     }
 
@@ -19,10 +35,10 @@ export const Register = (props) => {
 
             <form className="register-form"onSubmit={handleSubmit}>
                 <label htmlFor="name">Name</label>
-                <input value={name} type="name" placeholder="Nombre" id="name" name="name"/>
+                <input value={name} onChange={(e) => setName(e.target.value)} type="name" placeholder="Nombre" id="name" name="name"/>
 
                 <label htmlFor="phone">Phone</label>
-                <input value={phone} type="phone" placeholder="645129823" id="phone" name="phone"/>
+                <input value={phone} onChange={(e) => setPhone(e.target.value)} type="phone" placeholder="645129823" id="phone" name="phone"/>
 
                 <label htmlFor="email">Email</label>
                 <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" placeholder="youremail@gmail.com" id="email" name="email"/>

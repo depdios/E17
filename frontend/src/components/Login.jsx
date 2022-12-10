@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+
 export const Login = (props) => {
 
     const [email, setEmail] = useState('');
@@ -6,8 +7,22 @@ export const Login = (props) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(email);
-
+        const user = {
+            email: email,
+            password: pass
+          };
+        fetch('http://localhost:3000/login', {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(user)
+        })
+        .then(res => res.json())
+        .then(res=> {
+              console.log(res.message);
+        });
+        
     }
 
     return (
