@@ -8,15 +8,37 @@ function App() {
 
   const [currentForm, setCurrentForm] = useState('login');
 
-  const toggleForm = (formName) => {
-    setCurrentForm(formName);
-  }
-
   return (
+    <div>
+    <header>
+      <ul>
+        <li><a 
+          href="#"
+          role="button"
+          onClick={() => setCurrentForm('login')}>
+          Iniciar Sesión
+        </a></li>
+        <li><a 
+          href="#"
+          role="button"
+          onClick={() => setCurrentForm('signup')}>
+          Registrarse
+        </a></li>
+      </ul>
+    </header>
     <div className="App">
       {
-        currentForm === "login" ? <Login onFormSwitch={toggleForm} /> : <Register onFormSwitch={toggleForm} />
+        {
+          'login': <Login />,
+          'signup': <Register />
+        }[currentForm]
       }
+    </div>
+    <footer className="footer">
+      <p className="text-footer">
+        Footer
+      </p>
+    </footer>
     </div>
   );
 }
