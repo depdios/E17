@@ -11,7 +11,7 @@ export const Login = (props) => {
             email: email,
             password: pass
           };
-        fetch('http://localhost:3000/login', {
+        fetch('http://localhost:3000/userlog/login', {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json",

@@ -1,15 +1,29 @@
+require('rootpath')();
+
 const express = require("express");
+const app = express();
+
 const mongoose = require("mongoose");
 
 const { User } = require("./models/userModel");
 const { Ebook } = require("./models/ebookModel");
-const cors = require('cors');
 
-const app = express();
+const bodyParser = require('body-parser');
+const jwt = require('./_helpers/jwt');
+const errorHandler = require('./_helpers/error-handler')
+
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
+const cors = require('cors');
 
 app.use(cors({
   origin: 'http://localhost:3001'
 }));
+
+app.use(jwt());
+
+app.use(errorHandler);
 
 app.use(express.json());
 
@@ -22,14 +36,16 @@ app.get("/users", async (req, res) => {
   return res.status(200).json(allUsers);
 });
 
-app.post("/login/", async (req, res) => {
+require('./user/users.controller')(app)
+
+app.post("/users/login/", async (req, res) => {
   const logUser = await User.findOne({ email: req.body.email });
   if (!logUser)
-    return res.status(400).send({"message": 'No existe el usuario'});
+    return res.status(400);
   else if (logUser.password == req.body.password)
-    return res.status(200).send({"message": 'Acceso permitido'});
+    return res.status(200).send(logUser);
   else
-    return res.status(400).send({"message": 'Contraseña incorrecta'})
+    return res.status(400);
 });
 
 app.get("/users/:id", async (req, res) => {
@@ -38,7 +54,7 @@ app.get("/users/:id", async (req, res) => {
   return res.status(200).json(user);
 });
 
-app.post("/users", async (req, res) => {
+app.post("/users/signup", async (req, res) => {
   const newUser = new User({ ...req.body });
   const insertedUser = await newUser.save();
   return res.status(201).json(insertedUser);

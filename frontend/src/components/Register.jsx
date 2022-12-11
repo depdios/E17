@@ -15,7 +15,7 @@ export const Register = (props) => {
             email: email,
             password: pass
           };
-        fetch('http://localhost:3000/users', {
+        fetch('http://localhost:3000/userlog/signup', {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json",
