@@ -1,4 +1,4 @@
-import { Login } from '../components/login';
+import { Login } from '../components/Login';
 import { render, screen } from '@testing-library/react';
 
 // hacemos test de Login

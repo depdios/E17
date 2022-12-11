@@ -1,5 +1,4 @@
-//import { Logeado } from '../components/logeado';
-import { Logeado } from '/home/usuario/E17/frontend/src/components/Logeado.jsx';
+import { Logeado } from '../components/Logeado';
 import { render, screen } from '@testing-library/react';
 
 // hacemos test de Logeado

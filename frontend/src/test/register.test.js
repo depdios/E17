@@ -1,4 +1,4 @@
-import { Register } from '../components/register';
+import { Register } from '../components/Register';
 import { render, screen } from '@testing-library/react';
 
 import sum from './sum.js';
