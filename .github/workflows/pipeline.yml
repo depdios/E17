@@ -1,5 +1,3 @@
-# Prueba 
-
 name: Node pipeline CI
 
 on:
@@ -21,9 +19,5 @@ jobs:
         node-version: 19
     - name: Instalar dependencias
       run: npm install
-    - name: Test
+    - name: Test frontend
       run: npm test
-    - name: Front app
-      run: |
-        cd frontend
-        npm start
