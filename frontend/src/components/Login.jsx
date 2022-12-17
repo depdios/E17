@@ -11,16 +11,19 @@ export const Login = (props) => {
             email: email,
             password: pass
           };
-        fetch('http://localhost:3000/login', {
+        fetch('http://localhost:3000/userlog/login', {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json",
+                
             },
             body: JSON.stringify(user)
         })
         .then(res => { 
             res.json()
-            props.onFormSwitch('logeado')
+            console.log(res.status)
+            if (res.status === 200) props.onFormSwitch('logeado')
+            else document.getElementById("error").innerHTML = "Usuario o contraseña incorrecta";
           })
         .then(res=> {
               console.log(res.message);
@@ -30,7 +33,7 @@ export const Login = (props) => {
 
     return (
         <div className="auth-form-container">
-
+            <div id="error"></div>
             <form className="login-form" onSubmit={handleSubmit}>
                 <label htmlFor="email">Email</label>
                 <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" placeholder="youremail@gmail.com" id="email" name="email"/>
