@@ -1,4 +1,4 @@
-name: Node pipeline CI
+name: Node tests CI
 
 on:
   push:
