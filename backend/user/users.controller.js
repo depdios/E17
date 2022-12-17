@@ -4,7 +4,7 @@ const cookieParser = require("cookie-parser");
 
 
 module.exports = function(app){
-    app.post('/userlog/login', (req, res, next) => {
+    app.post('/app/userlog/login', (req, res, next) => {
         userService.authenticate(req.body)
             .then(user => res
                 .cookie("access_token", user.token, {
