@@ -4,7 +4,7 @@ export const Logeado = (props) => {
 
     const showProfile = (e) => {
         e.preventDefault();
-        fetch('http://localhost:3000/users/', {
+        fetch('http://localhost:3000/app/users/', {
             method: 'GET',
             headers: {
                 "Content-Type": "application/json",
