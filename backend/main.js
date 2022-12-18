@@ -10,6 +10,9 @@ const mongoose = require("mongoose");
 const { User } = require("./models/userModel");
 const { Ebook } = require("./models/ebookModel");
 
+const { MongoClient, ServerApiVersion } = require('mongodb');
+const uri = "mongodb+srv://admin:admin@cluster0.ijbwzzm.mongodb.net/?retryWrites=true&w=majority";
+
 const bodyParser = require('body-parser');
 const jwt = require('./_helpers/jwt');
 const errorHandler = require('./_helpers/error-handler')
@@ -108,7 +111,7 @@ app.delete("/app/ebooks/:id", async (req, res) => {
 const start = async () => {
   try {
     await mongoose.connect(
-      "mongodb://localhost:27017/bookerinDB"
+      uri
     );
     app.listen(3000, () => console.log("Server started on port 3000"));
   } catch (error) {
